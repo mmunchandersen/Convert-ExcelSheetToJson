@@ -43,7 +43,10 @@ Param(
     [string]$OutputFileName,
 
     [Parameter()]
-    [string]$SheetName
+    [string]$SheetName,
+
+    [Parameter()]
+    [string]$Encoding = "ASCII"
     )
 
 #region prep
@@ -125,7 +128,7 @@ foreach ($rowNumber in 2..$rowsToIterate+1) {
 #endregion rows
 
 
-$results | ConvertTo-Json | Out-File -Encoding ASCII -FilePath $OutputFileName
+$results | ConvertTo-Json | Out-File -Encoding $Encoding -FilePath $OutputFileName
 
 Get-Item $OutputFileName
 
